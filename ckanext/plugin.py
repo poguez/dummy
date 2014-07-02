@@ -10,10 +10,10 @@ log = logging.getLogger(__name__)
 class WidgetsPlugin(p.SingletonPlugin):
     p.implements(p.IRoutes, inherit=True)
 
-    def after_map(self, map):
+    def before_map(self, map):
         #This is a reference to the controller.
-        controller = 'ckanext.extwiwidget.controller:Controller'
-        map.connect('view_widget','/dataset/{id}/preview', action='view_widget')
+        widgets_controller = 'ckanext.widgets.controller:WidgetsController'
+        map.connect('/dataset/{id}/preview', controller=widgets_controller, action='view_widget')
 
         return map
 
