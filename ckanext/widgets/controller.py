@@ -4,8 +4,7 @@ import logging
 _ = p.toolkit._
 
 class WidgetsController(p.toolkit.BaseController):
-    controller = 'ckanext.extwidget.controller.WidgetsController'
-    
+    controller = 'ckanext.widgets.controller.WidgetsController'
 
     def _template_setup_package(self, id):
         if not id:
@@ -17,8 +16,9 @@ class WidgetsController(p.toolkit.BaseController):
             p.toolkit.abort(404, _('Package not found'))
 
     #The function must be decorated to allow anonymous access
+    #def view_widget(self, id, package):
     @p.toolkit.auth_allow_anonymous_access
-    def view_widget(self, id, package):
+    def view_widget(self):
         #self._template_setup_package(id)
         #if package is '':
         #    return self._org_list_pages(id)

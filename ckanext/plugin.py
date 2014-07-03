@@ -14,7 +14,6 @@ class WidgetsPlugin(p.SingletonPlugin):
         #This is a reference to the controller.
         widgets_controller = 'ckanext.widgets.controller:WidgetsController'
         map.connect('/dataset/{id}/preview', controller=widgets_controller, action='view_widget')
-
         return map
 
     def update_config(self, config):
