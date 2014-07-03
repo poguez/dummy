@@ -6,14 +6,14 @@ _ = p.toolkit._
 class WidgetsController(p.toolkit.BaseController):
     controller = 'ckanext.widgets.controller.WidgetsController'
 
-    def _template_setup_package(self, id):
-        if not id:
-            return
-        context = {'for_view': True}
-        try:
-            p.toolkit.c.group_dict = p.toolkit.get_action('package_show')(context, {'id': id})
-        except p.toolkit.ObjectNotFound:
-            p.toolkit.abort(404, _('Package not found'))
+    #def _template_setup_package(self, id):
+    #    if not id:
+    #        return
+    #    context = {'for_view': True}
+    #    try:
+    #        p.toolkit.c.group_dict = p.toolkit.get_action('package_show')(context, {'id': id})
+    #    except p.toolkit.ObjectNotFound:
+    #        p.toolkit.abort(404, _('Package not found'))
 
     #The function must be decorated to allow anonymous access
     #def view_widget(self, id, package):

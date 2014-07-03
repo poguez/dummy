@@ -1,7 +1,6 @@
 import logging
 import ckan.plugins as p
 import ckan.plugins.toolkit as toolkit
-from ckanext.issues import controller
 
 
 log = logging.getLogger(__name__)
@@ -9,6 +8,7 @@ log = logging.getLogger(__name__)
 
 class WidgetsPlugin(p.SingletonPlugin):
     p.implements(p.IRoutes, inherit=True)
+    p.implements(p.IConfigurer, inherit=True)
 
     def before_map(self, map):
         #This is a reference to the controller.
@@ -23,5 +23,5 @@ class WidgetsPlugin(p.SingletonPlugin):
         #This plugin public files.
         toolkit.add_public_directory(config, 'public')
 
-    def view_widget(self, context, data_dict):
-      return 'widget.html'
+    #def view_widget(self, context, data_dict):
+    #  return 'widget.html'
