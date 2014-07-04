@@ -17,7 +17,7 @@ class WidgetsController(p.toolkit.BaseController):
 
     #The function must be decorated to allow anonymous access
     #def view_widget(self, id, package):
-    @p.toolkit.auth_allow_anonymous_access
+    #@p.toolkit.auth_allow_anonymous_access
     def view_widget(self):
         #self._template_setup_package(id)
         #if package is '':
