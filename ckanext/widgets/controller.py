@@ -16,25 +16,25 @@ class WidgetsController(p.toolkit.BaseController):
     #def view_widget(self):
     #    return p.toolkit.render('widget.html')
 
-    def view_widget(self, context, data_dict):
+    def view_widget(self, id):
         '''
         Embeded page for  widget visualization.
         context = {'model': model, 'session': model.Session,
             'user': c.user or c.author, 'auth_user_obj': c.userobj}
         '''
-        context = {'model': model, 'session': model.Session,
-                   'user': c.user or c.author, 'auth_user_obj': c.userobj}
-        print dir(context)
-        print "-------"
-        print data_dict
+        context = {#'model': model, 'session': model.Session,
+                   #'user': c.user or c.author, 'auth_user_obj': c.userobj
+		}
+        
+        print "--------------------------\n%s\n------------------------------" % str(id)
+        
         try:
             c.package = get_action('package_show')(context, {'id': id})
             data_dict = {'resource': c.resource, 'package': c.package}
-            return p.toolkit.render('widget.html', context, data_dict)
         except NotFound:
             abort(404, _('Resource not found'))
         except NotAuthorized:
             abort(401, _('Unauthorized to read resource %s') % id)
-        else:
-            return p.toolkit.render('widget.html',context, data_dict)
+        
+        return p.toolkit.render('widget.html', data_dict)
 

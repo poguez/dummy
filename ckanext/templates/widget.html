@@ -10,31 +10,35 @@
 <![endif]-->
 </head>
 <body>
-
+<!--h1>{{ c.package }}</h1-->
 <div class="module-content">
-  <h1>Censo Educativo SEP</h1>
+  <h1>{{c.package.title}}</h1>
   <div class="notes embedded-content">
-    <p>Censo educativo 2013.</p>
+    <p>{{c.package.description}}</p>
+
   </div>
   <span class="insert-comment-thread"></span>
   <!-- Snippet package/snippets/resources_list.html start -->
   <section class="resources">
     <h3>Datos y Recursos</h3>
     <ul class="resource-list">
+      {% for resource in c.package.resources %}
       <!-- Snippet package/snippets/resource_item.html start -->
-      <li class="resource-item" data-id="4d8bc01a-624a-4d1e-a6ad-9b25370dec25">
-      <a class="heading" href="/dataset/censo-educativo-sep/resource/4d8bc01a-624a-4d1e-a6ad-9b25370dec25" title="Base de datos del Censo de Escuelas, Maestros y Alumnos, SEP,INEGI">
-        Base de datos del Censo de Escuelas, Maestros y ...<span class="format-label" property="dc:format" data-format="csv">CSV</span>
+      <li class="resource-item" data-id="{{resource.id}}">
+      <a class="heading" href="{{resource.url}}" title="{{resource.name}}">
+        {{resource.name}}<span class="format-label" property="dc:format" data-format="{{resource.format}}"> {{resource.format}}</span>
         <!-- Snippet snippets/popular.html start -->
         <!-- Snippet snippets/popular.html end -->
       </a>
       </li>
+      {%- endfor %}
       <!-- Snippet package/snippets/resource_item.html end -->
       <!-- Snippet package/snippets/resource_item.html start -->
-      <li class="resource-item" data-id="16c31e6c-d8b7-4dc7-8ef2-a8cffd286c38">
+      <!--li class="resource-item" data-id="16c31e6c-d8b7-4dc7-8ef2-a8cffd286c38">
       <a class="heading" href="/dataset/censo-educativo-sep/resource/16c31e6c-d8b7-4dc7-8ef2-a8cffd286c38" title="[Comprimido] Base de datos del Censo de Escuelas, Maestros y Alumnos, SEP,INEGI">
         [Comprimido] Base de datos del Censo de Escuelas, ...<span class="format-label" property="dc:format" data-format="zip">ZIP</span>
-        <!-- Snippet snippets/popular.html start -->
+        -->
+	<!-- Snippet snippets/popular.html start -->
         <!-- Snippet snippets/popular.html end -->
       </a>
       </li>
@@ -43,19 +47,16 @@
   </section>
   <!-- Snippet package/snippets/resources_list.html end -->
   <!-- Snippet package/snippets/tags.html start -->
+  
   <section class="tags">
     <h3>Tags</h3>
     <!-- Snippet snippets/tag_list.html start -->
     <ul class="tag-list well">
+      {% for tag in c.package.tags %}
       <li>
-      <a class="tag" href="/dataset?tags=2013">2013</a>
+      <a class="tag" href="/dataset?tags={{tag.name}}">{{tag.display_name}}</a>
       </li>
-      <li>
-      <a class="tag" href="/dataset?tags=inegi">inegi</a>
-      </li>
-      <li>
-      <a class="tag" href="/dataset?tags=sep">sep</a>
-      </li>
+      {%- endfor %}
     </ul>
     <!-- Snippet snippets/tag_list.html end -->
   </section>
@@ -73,7 +74,7 @@
       <tbody>
       <tr>
         <th scope="row" class="dataset-label">Estado</th>
-        <td class="dataset-details">active</td>
+        <td class="dataset-details">{{c.package.state}}</td>
       </tr>
       </tbody>
     </table>
